@@ -63,8 +63,7 @@ namespace Spex
 			return new Scenario()
 			{
 				Title = "asdf",
-				Steps =  = new 
-
+			};
 		}
 	}
 
