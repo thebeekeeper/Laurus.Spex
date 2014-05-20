@@ -1,0 +1,28 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Spex/Spex.cs">
+    <Files>
+      <File FileName="Spex/MyTemplate.cs" Line="24" Column="2" />
+      <File FileName="ConsoleApplication1/Runner.cs" Line="21" Column="18" />
+      <File FileName="ConsoleApplication1/Program.cs" Line="19" Column="4" />
+      <File FileName="Spex/Templater.cs" Line="16" Column="12" />
+      <File FileName="Spex/Spex.cs" Line="53" Column="4" />
+      <File FileName="Spex/Sample2.cs" Line="26" Column="18" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="ConsoleApplication1" expanded="True">
+            <Node name="References" selected="True" />
+          </Node>
+          <Node name="Spex" expanded="True" />
+          <Node name="Spex.Sample" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

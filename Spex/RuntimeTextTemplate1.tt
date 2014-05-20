@@ -1,0 +1,42 @@
+<#@ template language="C#" #>
+
+<html>
+<head>
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<style type="text/css">
+		body {
+			font-family: Helvetica, Arial, sans serif;
+		}
+		h2 {
+			border-bottom: 1px solid #eee;
+			padding-bottom: 5px;
+		}
+	</style>
+
+</head>
+<body>
+<h1><#= Data.Title #></h1>
+<div>
+	<# foreach (Scenario scenario in Data.Scenarios)
+	{ #>
+		<h2>
+			<# if(scenario.Outcome == "Pass") { #>
+				<i class="fa fa-check"></i>
+			<# } else { #>
+				<i class="fa fa-warning"></i>
+			<# } #>
+			<#= scenario.Title #> 
+		</h2>
+		<table>
+		<# foreach (TestStep step in scenario.Steps)
+		{ #>
+			<tr>
+				<td> <#= step.Kind #> </td>
+				<td> <#= step.Description #> </td>
+			</tr>
+		<#}#>
+		</table>
+	<# } #>
+</div>
+</body>
+</html>
