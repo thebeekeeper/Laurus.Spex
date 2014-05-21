@@ -12,8 +12,17 @@ namespace Spex
 	{
 		public static TestContext Given(string given, Func<TestContext> action)
 		{
-			var context = action();
-			context.Log.Given(given);
+			// bootstrapping might be an issue - how to log if setting up the context fails?
+			var context = default(TestContext);
+			try
+			{
+				context = action();
+				context.Log.Given(given);
+			}
+			catch (Exception e)
+			{
+				context.Log.Error(e.Message);
+			}
 			return context;
 		}
 

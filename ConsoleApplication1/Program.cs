@@ -14,7 +14,7 @@ namespace ConsoleApplication1
 		{
 			var r = new Runner();
 			Console.WriteLine("VERSION 2");
-			var context = r.RunTest<Sample2>("AnotherOne");
+			var context = r.RunTest<AtmSample>("AnotherOne");
 			var t = new Templater();
 			t.Apply ("Test", Enumerable.Empty<Scenario>());
 		}

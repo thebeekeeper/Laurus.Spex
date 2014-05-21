@@ -39,5 +39,13 @@ namespace Spex
 			Console.WriteLine("x Then {0}", then);
 			Console.ForegroundColor = c;
 		}
+
+		void ITestLog.Error(string error)
+		{
+			var c = Console.ForegroundColor;
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("Error: {0}", error);
+			Console.ForegroundColor = c;
+		}
 	}
 }

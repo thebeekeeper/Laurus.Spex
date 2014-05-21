@@ -12,5 +12,6 @@ namespace Spex
 		void And(string and);
 		void When(string when);
 		void Then(string then);
+		void Error(string message);
 	}
 }

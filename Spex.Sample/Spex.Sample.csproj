@@ -41,8 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AtmSample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Spex.SampleApp\Spex.SampleApp.csproj">
+      <Project>{517456b3-a8e6-4d98-990b-c7fe9f5e27a8}</Project>
+      <Name>Spex.SampleApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spex\Spex.csproj">
+      <Project>{fe4c975f-b284-4907-90be-4bac21e79930}</Project>
+      <Name>Spex</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

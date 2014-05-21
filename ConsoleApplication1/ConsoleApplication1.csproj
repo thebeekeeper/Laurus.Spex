@@ -52,6 +52,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Spex.Sample\Spex.Sample.csproj">
+      <Project>{62919176-9570-4183-9844-20a8cdff577b}</Project>
+      <Name>Spex.Sample</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spex\Spex.csproj">
       <Project>{FE4C975F-B284-4907-90BE-4BAC21E79930}</Project>
       <Name>Spex</Name>
