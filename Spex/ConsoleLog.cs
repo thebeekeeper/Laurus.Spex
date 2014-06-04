@@ -8,6 +8,11 @@ namespace Spex
 {
 	public class ConsoleLog : ITestLog
 	{
+		IList<TestStep> ITestLog.GetExecutedSteps()
+		{
+			return new List<TestStep> ();
+		}
+
 		void ITestLog.Given(string given)
 		{
 			var c = Console.ForegroundColor;

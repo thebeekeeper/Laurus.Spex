@@ -10,7 +10,7 @@ namespace Spex.Sample
 	public class AtmSample
 	{
 		[Scenario("Customer withdraws cash")]
-		public TestContext AnotherOne()
+		public SpexContext AnotherOne()
 		{
 			var context = Spex.Given("the account is in credit", () => CreateDefaultContext())
 			.And("the card is valid", (c) => 
@@ -26,9 +26,9 @@ namespace Spex.Sample
 		}
 
 		// this is an example of a shared step binding
-		public TestContext CreateDefaultContext()
+		public SpexContext CreateDefaultContext()
 		{
-			var rval = new TestContext();
+			var rval = new SpexContext();
 			rval.ContextData.Card = new AtmCard(Guid.NewGuid(), DateTime.Now.AddDays(99))
 			{
 				Balance = -1000.0M

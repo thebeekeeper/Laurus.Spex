@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spex.Sample\Spex.Sample.csproj">
-      <Project>{62919176-9570-4183-9844-20a8cdff577b}</Project>
+      <Project>{62919176-9570-4183-9844-20A8CDFF577B}</Project>
       <Name>Spex.Sample</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spex\Spex.csproj">

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -10,10 +10,10 @@ namespace Spex
 {
     public static class Spex
 	{
-		public static TestContext Given(string given, Func<TestContext> action)
+		public static SpexContext Given(string given, Func<SpexContext> action)
 		{
 			// bootstrapping might be an issue - how to log if setting up the context fails?
-			var context = default(TestContext);
+			var context = default(SpexContext);
 			try
 			{
 				context = action();
@@ -27,21 +27,21 @@ namespace Spex
 		}
 
 		// i don't know if i really want And - given, when, then is pretty nice, but it's pretty good to havae something else that affects context
-		public static TestContext And(this TestContext context, string and, Action<TestContext> action)
+		public static SpexContext And(this SpexContext context, string and, Action<SpexContext> action)
 		{
 			context.Log.And(and);
 			action(context);
 			return context;
 		}
 
-		public static TestContext When(this TestContext context, string when, Action<TestContext> action)
+		public static SpexContext When(this SpexContext context, string when, Action<SpexContext> action)
 		{
 			context.Log.When(when);
 			action(context);
 			return context;
 		}
 
-		public static TestContext Then(this TestContext context, string then, Action<TestContext> action)
+		public static SpexContext Then(this SpexContext context, string then, Action<SpexContext> action)
 		{
 			context.Log.Then(then);
 			action(context);
@@ -53,30 +53,32 @@ namespace Spex
 	/// <summary>
 	/// Test context can either be explicitly defined, or ContextData can be used to dynamically add members
 	/// </summary>
-	public class TestContext
+	public class SpexContext
 	{
 		public dynamic ContextData { get; set; }
 		public ITestLog Log { get; set; }
 
-		public TestContext()
+		public SpexContext()
 		{
 			ContextData = new ExpandoObject();
-			Log = new ConsoleLog();
+			Log = new RuntimeLog();
 		}
 	}
 
 	public static class ContextExtensions
 	{
-		public static Scenario ToScenario(this TestContext context)
+		public static Scenario ToScenario(this SpexContext context)
 		{
 			return new Scenario()
 			{
 				Title = "asdf",
+				Outcome =  "Pass",
+				Steps = context.Log.GetExecutedSteps(),
 			};
 		}
 	}
 
-	public class NodeContext : TestContext
+	public class NodeContext : SpexContext
 	{
 		public string SelectedNode { get; set; }
 	}

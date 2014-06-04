@@ -46,11 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Spex.SampleApp\Spex.SampleApp.csproj">
-      <Project>{517456b3-a8e6-4d98-990b-c7fe9f5e27a8}</Project>
+      <Project>{517456B3-A8E6-4D98-990B-C7FE9F5E27A8}</Project>
       <Name>Spex.SampleApp</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spex\Spex.csproj">
-      <Project>{fe4c975f-b284-4907-90be-4bac21e79930}</Project>
+      <Project>{FE4C975F-B284-4907-90BE-4BAC21E79930}</Project>
       <Name>Spex</Name>
     </ProjectReference>
   </ItemGroup>

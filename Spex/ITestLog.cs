@@ -13,5 +13,7 @@ namespace Spex
 		void When(string when);
 		void Then(string then);
 		void Error(string message);
+
+		IList<TestStep> GetExecutedSteps();
 	}
 }

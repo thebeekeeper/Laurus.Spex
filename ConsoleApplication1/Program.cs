@@ -13,10 +13,9 @@ namespace ConsoleApplication1
 		static void Main(string[] args)
 		{
 			var r = new Runner();
-			Console.WriteLine("VERSION 2");
-			var context = r.RunTest<AtmSample>("AnotherOne");
+			var result = r.RunTest<AtmSample>("AnotherOne");
 			var t = new Templater();
-			t.Apply ("Test", Enumerable.Empty<Scenario>());
+			t.Apply ("Test", new[] { result });
 		}
 	}
 }
