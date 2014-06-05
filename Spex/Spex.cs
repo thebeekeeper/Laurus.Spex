@@ -29,22 +29,44 @@ namespace Spex
 		// i don't know if i really want And - given, when, then is pretty nice, but it's pretty good to havae something else that affects context
 		public static SpexContext And(this SpexContext context, string and, Action<SpexContext> action)
 		{
-			context.Log.And(and);
-			action(context);
+			bool success = true;
+			try
+			{
+				action(context);
+			}
+			catch (Exception e) 
+			{
+				success = false;
+			}
+			context.Log.And(and, success);
 			return context;
 		}
 
 		public static SpexContext When(this SpexContext context, string when, Action<SpexContext> action)
 		{
-			context.Log.When(when);
-			action(context);
+			bool success = true;
+			try
+			{
+				action(context);
+			}
+			catch(Exception e) {
+				success = false;
+			}
+			context.Log.When(when, success);
 			return context;
 		}
 
 		public static SpexContext Then(this SpexContext context, string then, Action<SpexContext> action)
 		{
-			context.Log.Then(then);
-			action(context);
+			bool success = true;
+			try
+			{
+				action(context);
+			}
+			catch (Exception e) {
+				success = false;
+			}
+			context.Log.Then(then, success);
 			return context;
 		}
 
@@ -71,8 +93,8 @@ namespace Spex
 		{
 			return new Scenario()
 			{
-				Title = "asdf",
-				Outcome =  "Pass",
+				Title = "need the scenario title",
+				Outcome = (!context.Log.GetExecutedSteps().Any(s => s.Outcome.Equals("Fail"))).ToOutcome(),
 				Steps = context.Log.GetExecutedSteps(),
 			};
 		}

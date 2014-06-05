@@ -20,19 +20,19 @@ namespace Spex
 			_steps.Add(new TestStep() { Kind = "Given", Description = given, Outcome = "Pass" });
 		}
 
-		void ITestLog.And(string and)
+		void ITestLog.And(string and, bool success)
 		{
-			_steps.Add (new TestStep () { Kind = "And", Description = and, Outcome = "Pass" });
+			_steps.Add (new TestStep () { Kind = "And", Description = and, Outcome = success.ToOutcome() });
 		}
 
-		void ITestLog.When(string when)
+		void ITestLog.When(string when, bool success)
 		{
-			_steps.Add (new TestStep () { Kind = "When", Description = when, Outcome = "Pass" });
+			_steps.Add (new TestStep () { Kind = "When", Description = when, Outcome = success.ToOutcome() });
 		}
 
-		void ITestLog.Then(string then)
+		void ITestLog.Then(string then, bool success)
 		{
-			_steps.Add (new TestStep () { Kind = "Then", Description = then, Outcome = "Pass" });
+			_steps.Add (new TestStep () { Kind = "Then", Description = then, Outcome = success.ToOutcome() });
 		}
 
 		void ITestLog.Error(string error)
@@ -41,6 +41,14 @@ namespace Spex
 		}
 
 		private List<TestStep> _steps;
+	}
+
+	public static class BooleanExtensions
+	{
+		public static string ToOutcome(this bool v)
+		{
+			return v ? "Pass" : "Fail";
+		}
 	}
 }
 

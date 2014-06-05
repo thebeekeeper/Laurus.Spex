@@ -9,9 +9,9 @@ namespace Spex
 	public interface ITestLog
 	{
 		void Given(string given);
-		void And(string and);
-		void When(string when);
-		void Then(string then);
+		void And(string and, bool success);
+		void When(string when, bool success);
+		void Then(string then, bool success);
 		void Error(string message);
 
 		IList<TestStep> GetExecutedSteps();

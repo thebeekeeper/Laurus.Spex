@@ -21,7 +21,7 @@ namespace Spex
 			Console.ForegroundColor = c;
 		}
 
-		void ITestLog.And(string and)
+		void ITestLog.And(string and, bool success)
 		{
 			var c = Console.ForegroundColor;
 			Console.ForegroundColor = ConsoleColor.Gray;
@@ -29,7 +29,7 @@ namespace Spex
 			Console.ForegroundColor = c;
 		}
 
-		void ITestLog.When(string when)
+		void ITestLog.When(string when, bool success)
 		{
 			var c = Console.ForegroundColor;
 			Console.ForegroundColor = ConsoleColor.Cyan;
@@ -37,7 +37,7 @@ namespace Spex
 			Console.ForegroundColor = c;
 		}
 
-		void ITestLog.Then(string then)
+		void ITestLog.Then(string then, bool success)
 		{
 			var c = Console.ForegroundColor;
 			Console.ForegroundColor = ConsoleColor.Green;
