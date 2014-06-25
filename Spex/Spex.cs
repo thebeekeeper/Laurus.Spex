@@ -5,10 +5,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Spex
 {
-    public static class Spex
+    public class Spex
 	{
 		public static SpexContext Given(string given, Func<SpexContext> action)
 		{
@@ -18,6 +19,7 @@ namespace Spex
 			{
 				context = action();
 				context.Log.Given(given);
+				context.Title = GetScenarioTitle();
 			}
 			catch (Exception e)
 			{
@@ -26,59 +28,69 @@ namespace Spex
 			return context;
 		}
 
-		// i don't know if i really want And - given, when, then is pretty nice, but it's pretty good to havae something else that affects context
-		public static SpexContext And(this SpexContext context, string and, Action<SpexContext> action)
+		private static string GetScenarioTitle()
 		{
-			bool success = true;
-			try
-			{
-				action(context);
+			var frames = new StackTrace ().GetFrames();
+			foreach (var f in frames) {
+				var attrs = f.GetMethod ().GetCustomAttributes (typeof(ScenarioAttribute), false);
+				if (attrs.Any ()) {
+					var scenario = (ScenarioAttribute)attrs.First ();
+					return scenario.Title;
+				}
 			}
-			catch (Exception e) 
-			{
-				success = false;
-			}
-			context.Log.And(and, success);
-			return context;
+			throw new Exception ("Scenario attribute not found on test");
 		}
-
-		public static SpexContext When(this SpexContext context, string when, Action<SpexContext> action)
-		{
-			bool success = true;
-			try
-			{
-				action(context);
-			}
-			catch(Exception e) {
-				success = false;
-			}
-			context.Log.When(when, success);
-			return context;
-		}
-
-		public static SpexContext Then(this SpexContext context, string then, Action<SpexContext> action)
-		{
-			bool success = true;
-			try
-			{
-				action(context);
-			}
-			catch (Exception e) {
-				success = false;
-			}
-			context.Log.Then(then, success);
-			return context;
-		}
-
 	}
 
-	/// <summary>
-	/// Test context can either be explicitly defined, or ContextData can be used to dynamically add members
-	/// </summary>
 	public class SpexContext
 	{
+		// i don't know if i really want And - given, when, then is pretty nice, but it's pretty good to havae something else that affects context
+		public SpexContext And(string and, Action<SpexContext> action)
+		{
+			bool success = true;
+			try
+			{
+				action(this);
+			}
+			catch (Exception) 
+			{
+				success = false;
+			}
+			this.Log.And(and, success);
+			return this;
+		}
+
+		public SpexContext When(string when, Action<SpexContext> action)
+		{
+			bool success = true;
+			try
+			{
+				action(this);
+			}
+			catch(Exception) {
+				success = false;
+			}
+			this.Log.When(when, success);
+			return this;
+		}
+
+		public SpexContext Then(string then, Action<SpexContext> action)
+		{
+			bool success = true;
+			try
+			{
+				action(this);
+			}
+			catch (Exception) {
+				success = false;
+			}
+			this.Log.Then(then, success);
+			return this;
+		}
+
 		public dynamic ContextData { get; set; }
 		public ITestLog Log { get; set; }
+		public string Title {get;set;}
 
 		public SpexContext()
 		{
@@ -93,17 +105,17 @@ namespace Spex
 		{
 			return new Scenario()
 			{
-				Title = "need the scenario title",
+				Title = context.Title,
 				Outcome = (!context.Log.GetExecutedSteps().Any(s => s.Outcome.Equals("Fail"))).ToOutcome(),
 				Steps = context.Log.GetExecutedSteps(),
 			};
 		}
 	}
 
-	public class NodeContext : SpexContext
+	/*public class NodeContext : SpexContext
 	{
 		public string SelectedNode { get; set; }
-	}
+	}*/
 
 	[AttributeUsage(AttributeTargets.Method)]
 	public class ScenarioAttribute : Attribute

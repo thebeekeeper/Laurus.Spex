@@ -15,7 +15,7 @@ namespace ConsoleApplication1
 			var r = new Runner();
 			var result = r.RunTest<AtmSample>("AnotherOne");
 			var t = new Templater();
-			t.Apply ("Test", new[] { result });
+			t.Apply ("Test", new[] { result }, "templated.html");
 		}
 	}
 }

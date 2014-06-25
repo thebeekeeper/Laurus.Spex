@@ -35,5 +35,13 @@ namespace Spex.Sample
 			};
 			return rval;
 		}
+
+		public void wat()
+		{
+			var steps = new Dictionary<string, Action>();
+			steps ["given"] = () => Console.WriteLine ("hello given");
+			// neat
+			steps["given"].Invoke();
+		}
 	}
 }
