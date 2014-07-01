@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spex.SampleApp
+namespace Laurus.Spex.SampleApp
 {
     public class Atm
     {

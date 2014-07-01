@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spex
+namespace Laurus.Spex
 {
 	public interface ITestLog
 	{
-		void Given(string given);
+		void Given(string given, bool success);
 		void And(string and, bool success);
 		void When(string when, bool success);
 		void Then(string then, bool success);

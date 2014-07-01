@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Spex
+namespace Laurus.Spex
 {
 	public class RuntimeLog : ITestLog
 	{
@@ -15,9 +15,9 @@ namespace Spex
 			return _steps;
 		}
 
-		void ITestLog.Given(string given)
+		void ITestLog.Given(string given, bool success)
 		{
-			_steps.Add(new TestStep() { Kind = "Given", Description = given, Outcome = "Pass" });
+			_steps.Add(new TestStep() { Kind = "Given", Description = given, Outcome = success.ToOutcome() });
 		}
 
 		void ITestLog.And(string and, bool success)

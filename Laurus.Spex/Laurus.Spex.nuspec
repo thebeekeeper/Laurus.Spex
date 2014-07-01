@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+		<id>Laurus.Spex</id>
+		<title>Laurus Spex</title>
+		<version>$version$</version>
+		<authors>ngamroth</authors>
+		<owners>ngamroth</owners>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Ultra simple, developer focused BDD framework</description>
+		<projectUrl>http://github.com/thebeekeeper/Laurus.Spex</projectUrl>
+	</metadata>
+	<files>
+		<file src="bin\Release\*.dll" target="lib\net45" />
+	</files>
+</package>

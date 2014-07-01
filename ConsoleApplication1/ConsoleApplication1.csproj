@@ -44,19 +44,18 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Runner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spex.Sample\Spex.Sample.csproj">
+    <ProjectReference Include="..\Laurus.Spex.Sample\Laurus.Spex.Sample.csproj">
       <Project>{62919176-9570-4183-9844-20A8CDFF577B}</Project>
-      <Name>Spex.Sample</Name>
+      <Name>Laurus.Spex.Sample</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spex\Spex.csproj">
+    <ProjectReference Include="..\Laurus.Spex\Laurus.Spex.csproj">
       <Project>{FE4C975F-B284-4907-90BE-4BAC21E79930}</Project>
-      <Name>Spex</Name>
+      <Name>Laurus.Spex</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
