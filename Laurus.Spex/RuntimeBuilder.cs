@@ -8,9 +8,25 @@ namespace Laurus.Spex
 {
 	public class RuntimeBuilder
 	{
-        public SpexRuntime Default()
+		public RuntimeBuilder WithLogger(ITestLog log)
 		{
-			return new SpexRuntime();
+			_logger = log;
+			return this;
+		}
+
+		public SpexRuntime Create()
+		{
+			return new SpexRuntime(_logger);
+		}
+
+		private ITestLog _logger;
+	}
+
+    public static class RuntimeFactory
+	{
+        public static RuntimeBuilder Initialize()
+		{
+			return new RuntimeBuilder();
 		}
 	}
 }

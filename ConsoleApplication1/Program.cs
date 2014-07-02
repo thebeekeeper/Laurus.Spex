@@ -13,22 +13,20 @@ namespace ConsoleApplication1
 		static void Main(string[] args)
 		{
 			RunTest<AtmSample>("AnotherOne");
-			RunTest(new AtmSample(), "AnotherOne");
-			//var t = new Templater();
-			//t.Apply ("Test", new[] { result }, "templated.html");
+			//RunTest(new AtmSample(), "AnotherOne");
 			Console.ReadKey();
 		}
 
 		public static void RunTest<T>(string name) where T : IFeature
 		{
 			var inst = Activator.CreateInstance<T>();
-			var runtime = new SpexRuntime();
+			var runtime = RuntimeFactory.Initialize().WithLogger(new RuntimeLog()).Create();
 			runtime.Run(inst, "AnotherOne");
 		} 
 
         public static void RunTest(IFeature feature, string name)
 		{
-			var runtime = new SpexRuntime();
+			var runtime = RuntimeFactory.Initialize().WithLogger(new ConsoleLog()).Create();
 			runtime.Run(feature, name);
 		}
 	}

@@ -33,7 +33,8 @@ namespace Laurus.Spex
 		{
 			return new Scenario()
 			{
-				Title = context.Title,
+				//Title = context.Title,
+                Title = "figure out the title",
 				Outcome = (!context.Log.GetExecutedSteps().Any(s => s.Outcome.Equals("Fail"))).ToOutcome(),
 				Steps = context.Log.GetExecutedSteps(),
 			};

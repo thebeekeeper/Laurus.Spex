@@ -21,7 +21,7 @@ namespace Laurus.Spex.Sample
 			.When("the customer requests cash", (c) => { })
 			.Then("ensure a rejection message is displayed", (c) => { })
 			.Then("ensure cash is not dispensed", (c) => { throw new Exception("test"); })
-			.Then("ensure the card is returned", (c) => { });
+			.Then("ensure the card is returned hello", (c) => { });
 		}
 
 		// this is an example of a shared step binding

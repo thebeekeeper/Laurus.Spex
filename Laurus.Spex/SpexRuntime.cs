@@ -9,11 +9,11 @@ namespace Laurus.Spex
 {
 	public class SpexRuntime
 	{
-        public SpexRuntime()
+        public SpexRuntime(ITestLog logger)
 		{
 			_context = new SpexContext()
             {
-				Log = new ConsoleLog(),
+				Log = logger,
 			};
 		}
 
@@ -22,6 +22,8 @@ namespace Laurus.Spex
 			feature.SetContext(_context);
 			var s = feature.GetType().GetMethod(scenarioName);
 			s.Invoke(feature, null);
+			var t = new Templater();
+			t.Apply("asdf", new[] { _context.ToScenario() }, "test.html");
 		}
 
 		private ITestLog _log;
